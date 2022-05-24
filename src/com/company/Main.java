@@ -77,24 +77,27 @@ public class Main {
                 if (empList.item(i).getNodeName() == "employee") {
                     NodeList paramList = empList.item(i).getChildNodes();
                     for (int j = 0; j < paramList.getLength(); j++) {
-                        if (paramList.item(j).getNodeName() == "id") {
-                            id = Long.parseLong(paramList.item(j).getTextContent());
+                        switch (paramList.item(j).getNodeName()) {
+                            case ("id"):
+                                id = Long.parseLong(paramList.item(j).getTextContent());
+                                break;
+                            case ("firstName"):
+                                firstName = paramList.item(j).getTextContent();
+                                break;
+                            case ("lastName"):
+                                lastName = paramList.item(j).getTextContent();
+                                break;
+                            case ("country"):
+                                country = paramList.item(j).getTextContent();
+                                break;
+                            case ("age"):
+                                age = Byte.parseByte(paramList.item(j).getTextContent());
+                                break;
+                            default:
+                                break;
                         }
-                        if (paramList.item(j).getNodeName() == "firstName") {
-                            firstName = paramList.item(j).getTextContent();
-                        }
-                        if (paramList.item(j).getNodeName() == "lastName") {
-                            lastName = paramList.item(j).getTextContent();
-                        }
-                        if (paramList.item(j).getNodeName() == "country") {
-                            country = paramList.item(j).getTextContent();
-                        }
-                        if (paramList.item(j).getNodeName() == "age") {
-                            age = Byte.parseByte(paramList.item(j).getTextContent());
-                        }
-
                     }
-                    System.out.println(id + firstName + lastName + country + age);
+//                    System.out.println(id + firstName + lastName + country + age);
                     result.add(new Employee(id, firstName, lastName, country, age));
                 }
             }
